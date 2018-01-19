@@ -4,6 +4,8 @@ import grafica.*;
 int timer;
 int timer2;
 int timer3;
+int timer4;
+int index = 0;
 boolean check = false;
 
 void setup(){
@@ -13,7 +15,7 @@ void setup(){
 }
 
 void draw(){
-  if (millis() - timer3 >= 3590000) {
+  if (millis() - timer3 >= 2000) {
       check = true;
       
   }

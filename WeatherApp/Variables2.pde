@@ -14,11 +14,9 @@ void call() {
   JSONObject main = all.getJSONObject("main");
 
   float[] temp = {main.getFloat ("temp")}; //loads variable value of dt 
-  float test[];
-  
-  
+  temp = new float[index];
 
-  test = copying(temp);
+  
   //saveStrings();
   
   //3590000
@@ -28,18 +26,22 @@ void call() {
   JSONObject localTimeJSONObject = loadJSONObject (currentTime);
   String humanDt = localTimeJSONObject.getString ("localDate");
   
-  if (millis() - timer >= 3590000) {
+  
+  if(millis() - timer4 >= 2000) {
+    timer4 = millis();
+  }
+  
+  
+  if (millis() - timer >= 10000) {
       println(humanDt);
-       println(temp[0]);
-       println(test[0]);
+       println(temp);
       timer = millis();
   }
   int nPoints = 30;
   GPointsArray points = new GPointsArray(nPoints);
   
-  if (millis() - timer2 >= 3590000) {
-     points.add(1, temp[0]);
-     points.add(2, test[0]);
+  if (millis() - timer2 >= 2000) {
+     points.add(1, temp2);
      timer2 = millis();
      
      
