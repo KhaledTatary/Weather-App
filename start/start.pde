@@ -35,7 +35,7 @@ void setup(){
 }
 //86401000
 void draw(){
-  if (millis() - timer3 >= 86401000) { //checks if the timer hits a specific amount of millisecond and activate the code
+  if (millis() - timer3 >= 2000) { //checks if the timer hits a specific amount of millisecond and activate the code
       check = true;
       
   }

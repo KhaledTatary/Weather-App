@@ -33,11 +33,11 @@ void call() {
   JSONObject localTimeJSONObject = loadJSONObject (currentTime);
   String humanDt = localTimeJSONObject.getString ("localDate");
 
-    if (millis() - timer4 >= 86400000) { //adds more arries every time the timer hits a certain time
+    if (millis() - timer4 >= 1000) { //adds more arries every time the timer hits a certain time
       index2 = index2 +1;
       timer4 = millis();
   }
-  
+  //86400000
   temp[index2] = main.getFloat ("temp"); 
   minTemp[index2] = main.getFloat ("temp_min");
   maxTemp[index2] = main.getFloat ("temp_max");
@@ -94,6 +94,7 @@ void call() {
   // Create a new plot and set its position on the screen
   GPlot plot = new GPlot(this);
     plot.setPos(width*1/64, int(height*2/43));
+    plot.setDim(width*1/5,height/4.7);
     points.add(1,temp[1]);
     points.add(2,temp[2]);
     points.add(3,temp[3]);
@@ -127,6 +128,7 @@ void call() {
   // Create a new plot and set its position on the screen
   GPlot plot2 = new GPlot(this);
     plot2.setPos(width*1/64, int(height*2/43*7 +10));
+    plot2.setDim(width*1/5,height/4.7);
     points2.add(1,maxTemp[1]);
     points2.add(2,maxTemp[2]);
     points2.add(3,maxTemp[3]);
@@ -159,6 +161,7 @@ void call() {
   // Create a new plot and set its position on the screen
   GPlot plot3 = new GPlot(this);
     plot3.setPos(width*1/64, int(height*2/43*13 +10*2));
+    plot3.setDim(width*1/5,height/4.7);
     points3.add(1,minTemp[1]);
     points3.add(2,minTemp[2]);
     points3.add(3,minTemp[3]);
@@ -190,7 +193,8 @@ void call() {
   
   // Create a new plot and set its position on the screen
   GPlot plot4 = new GPlot(this);
-    plot4.setPos(width*1/3.8, int(height*2/43));
+    plot4.setPos(width*1/3.6, int(height*2/43));
+    plot4.setDim(width*1/5,height/4.7);
     points4.add(1,humidity[1]);
     points4.add(2,humidity[2]);
     points4.add(3,humidity[3]);
@@ -215,13 +219,14 @@ void call() {
 
   // Draw it!
   plot4.defaultDraw();
-  
+  /*
   GPointsArray points5 = new GPointsArray(nPoints);
   
   
   // Create a new plot and set its position on the screen
   GPlot plot5 = new GPlot(this);
     plot5.setPos(width*1/3.8, int(height*2/43*7 + 70));
+    plot5.setDim(width*1/5,height/4.7);
     points5.add(1,temp2[1]);
     points5.add(2,temp2[2]);
     points5.add(3,temp2[3]);
@@ -254,6 +259,7 @@ void call() {
   // Create a new plot and set its position on the screen
   GPlot plot6 = new GPlot(this);
     plot6.setPos(width*1/3.8, int(height*2/43*14 + 30));
+    plot6.setDim(width*1/5,height/4.7);
     points6.add(1,maxTemp2[1]);
     points6.add(2,maxTemp2[2]);
     points6.add(3,maxTemp2[3]);
@@ -286,6 +292,7 @@ void call() {
   // Create a new plot and set its position on the screen
   GPlot plot7 = new GPlot(this);
     plot7.setPos(width*1/2, int(height*2/43));
+    plot7.setDim(width*1/5,height/4.7);
     points7.add(1,minTemp2[1]);
     points7.add(2,minTemp2[2]);
     points7.add(3,minTemp2[3]);
@@ -318,6 +325,7 @@ void call() {
   // Create a new plot and set its position on the screen
   GPlot plot8 = new GPlot(this);
     plot8.setPos(width*1/2, int(height*2/43*7 + 10));
+    plot8.setDim(width*1/5,height/4.7);
     points8.add(1,humidity2[1]);
     points8.add(2,humidity2[2]);
     points8.add(3,humidity2[3]);
@@ -350,6 +358,7 @@ void call() {
   // Create a new plot and set its position on the screen
   GPlot plot9 = new GPlot(this);
     plot9.setPos(width*1/2, int(height*2/43*14 + 30));
+    plot9.setDim(width*1/5,height/4.7);
     points9.add(1,temp3[1]);
     points9.add(2,temp3[2]);
     points9.add(3,temp3[3]);
@@ -381,6 +390,7 @@ void call() {
   // Create a new plot and set its position on the screen
   GPlot plot10 = new GPlot(this);
     plot10.setPos(width*1/1.35, int(height*2/43));
+    plot10.setDim(width*1/5,height/4.7);
     points10.add(1,maxTemp3[1]);
     points10.add(2,maxTemp3[2]);
     points10.add(3,maxTemp3[3]);
@@ -412,6 +422,7 @@ void call() {
   // Create a new plot and set its position on the screen
   GPlot plot11 = new GPlot(this);
     plot11.setPos(width*1/1.35, int(height*2/43*7 + 10));
+    plot11.setDim(width*1/5,height/4.7);
     points11.add(1,minTemp3[1]);
     points11.add(2,minTemp3[2]);
     points11.add(3,minTemp3[3]);
@@ -443,6 +454,7 @@ void call() {
   // Create a new plot and set its position on the screen
   GPlot plot12 = new GPlot(this);
     plot12.setPos(width*1/1.35, int(height*2/43*14 + 30));
+    plot12.setDim(width*1/5,height/4.7);
     points12.add(1,humidity[1]);
     points12.add(2,humidity[2]);
     points12.add(3,humidity[3]);
@@ -468,4 +480,5 @@ void call() {
   // Draw it!
   plot12.defaultDraw();
   //end of graph
+  */
 }
