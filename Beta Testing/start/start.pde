@@ -9,6 +9,7 @@ int index = 15;
 int index2 = 0;
 //for edmonton
 float[] temp= new float[index];
+float[] futureTemp= new float[index];
 float[] minTemp= new float[index];
 float[] maxTemp= new float[index];
 float[] humidity= new float[index];
@@ -22,7 +23,11 @@ float[] temp3= new float[index];
 float[] minTemp3= new float[index];
 float[] maxTemp3= new float[index];
 float[] humidity3= new float[index];
+JSONArray[] list = new JSONArray[15];
+JSONObject[] all = new JSONObject[15];
+JSONObject[] main = new JSONObject[15];
 boolean check = false;
+boolean stop = false;
 
 void setup(){
   fullScreen();
@@ -30,8 +35,8 @@ void setup(){
   frameRate(1);
   textSize(26);
   text("Edmonton", width*1/10, height*1/36);
-  text("Alberta", width*1/3 + 40, height*1/3 + 40);
-  text("Moscow", width*7/12, height*2/3 - 20);
+  
+
 }
 //86401000
 void draw(){
@@ -48,7 +53,7 @@ void draw(){
  }
  
   if (index2 == 14) {  //stops the code from looping once the array storages reaches its limit, to prevent crashs
-      noLoop();
+      stop = true;
      
   }
 }

@@ -2,20 +2,22 @@
 void call() {
   JSONObject jsonCurrentEdmonton = loadJSONObject ("http://api.openweathermap.org/data/2.5/weather?id=5946768&APPID=0855aae3d6e2eecb468ab2ee7142bfb6&mode=JSON&units=metric");
   JSONObject jsonForecastEdmonton = loadJSONObject ("http://api.openweathermap.org/data/2.5/forecast?id=5946768&APPID=0855aae3d6e2eecb468ab2ee7142bfb6&mode=JSON&units=metric");
-
+  
   JSONObject jsonCurrentAlberta = loadJSONObject ("http://api.openweathermap.org/data/2.5/weather?id=5883102&APPID=0855aae3d6e2eecb468ab2ee7142bfb6&mode=JSON&units=metric");
   JSONObject jsonForecastAlberta = loadJSONObject ("http://api.openweathermap.org/data/2.5/forecast?id=5883102&APPID=0855aae3d6e2eecb468ab2ee7142bfb6&mode=JSON&units=metric");
 
   JSONObject jsonCurrentMoscow = loadJSONObject ("http://api.openweathermap.org/data/2.5/weather?id=524901&APPID=0855aae3d6e2eecb468ab2ee7142bfb6&mode=JSON&units=metric");
   JSONObject jsonForecastMoscow = loadJSONObject ("http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID=0855aae3d6e2eecb468ab2ee7142bfb6&mode=JSON&units=metric");
 
-  
-
-  
   //for Edmonton forecast
-  JSONArray list = jsonForecastEdmonton.getJSONArray ("list"); //unwraps [] or for list
-  JSONObject all = list.getJSONObject(0); //unwraps [] or for list
-  JSONObject main = all.getJSONObject("main");
+  list[0] = jsonForecastEdmonton.getJSONArray ("list"); //unwraps [] or for list
+  all[0] = list[0].getJSONObject(0); //unwraps [] or for list
+  main[0] = all[0].getJSONObject("main");
+  
+  jsons(1,1,0);
+  jsons(2,2,1);
+  jsons(3,3,2);
+  jsons(4,4,3);
   //For Alberta forecast
   JSONArray list2 = jsonForecastAlberta.getJSONArray ("list"); //unwraps [] or for list
   JSONObject all2 = list2.getJSONObject(0); //unwraps [] or for list
@@ -25,23 +27,23 @@ void call() {
   JSONObject all3 = list3.getJSONObject(0); //unwraps [] or for list
   JSONObject main3 = all3.getJSONObject("main");
   
+  int dt_forecast = all[0].getInt ("dt"); //loads variable value of dt 
   
-
-  int dt_forecast = all.getInt ("dt"); //loads variable value of dt 
-
   String currentTime = "http://www.convert-unix-time.com/api?timestamp=" + dt_forecast + "&timezone=Edmonton";
   JSONObject localTimeJSONObject = loadJSONObject (currentTime);
   String humanDt = localTimeJSONObject.getString ("localDate");
-
-    if (millis() - timer4 >= 1000) { //adds more arries every time the timer hits a certain time
+  text(humanDt, width*1/5, height*1/36);
+  println(humanDt);
+  
+  if (millis() - timer4 >= 1000 && stop == false) { //adds more arries every time the timer hits a certain time
       index2 = index2 +1;
       timer4 = millis();
   }
   //86400000
-  temp[index2] = main.getFloat ("temp"); 
-  minTemp[index2] = main.getFloat ("temp_min");
-  maxTemp[index2] = main.getFloat ("temp_max");
-  humidity[index2] = main.getFloat ("humidity");
+  temp[index2] = main[0].getFloat ("temp"); 
+  minTemp[index2] = main[0].getFloat ("temp_min");
+  maxTemp[index2] = main[0].getFloat ("temp_max");
+  humidity[index2] = main[0].getFloat ("humidity");
   
   temp2[index2] = main2.getFloat ("temp");
   minTemp2[index2] = main2.getFloat ("temp_min");
@@ -53,10 +55,6 @@ void call() {
   maxTemp3[index2] = main3.getFloat ("temp_max");
   humidity3[index2] = main3.getFloat ("humidity");
   //saves the arraies to text file incase
-  saveStrings("edmonton/temprature.txt", str(temp));
-  saveStrings("edmonton/minimunTemprature.txt", str(minTemp));
-  saveStrings("edmonton/maximumTemprature.txt", str(maxTemp));
-  saveStrings("edmonton/humidity.txt", str(humidity));
   
   saveStrings("alberta/temprature.txt", str(temp2));
   saveStrings("alberta/minimunTemprature.txt", str(minTemp2));
@@ -69,7 +67,7 @@ void call() {
   saveStrings("moscow/humidity.txt", str(humidity3));
 
 
-  println(humanDt);
+  
   println(temp[index2]);
   println(minTemp[index2]);
   println(maxTemp[index2]);
@@ -82,6 +80,7 @@ void call() {
   println(minTemp);
   println("Humidity" + "\n");
   println(humidity);
+  println(futureTemp);
 
       
   // Under here is just graphing from the grafic library (be warned it is way too long)    
@@ -112,7 +111,7 @@ void call() {
     points.add(12,temp[12]);
     points.add(13,temp[13]);
     points.add(14,temp[14]);
-    points1.add(2,5);
+    points1.add(1,futureTemp[0]);
     points1.add(3,5);
     
   // Set the plot title and the axis labels
