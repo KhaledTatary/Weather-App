@@ -19,5 +19,7 @@ void jsons(int num, int num2, int num3){
   humidity[num3] = main[num].getFloat ("humidity");
   */
   futureTemp[num3] = main[num].getFloat ("temp"); 
-  
+  futureMinTemp[num3] = main[num].getFloat ("temp_min");
+  futureMaxTemp[num3] = main[num].getFloat ("temp_max");
+  futureHumidity[num3] = main[num].getFloat ("humidity");
 }

@@ -14,10 +14,21 @@ void call() {
   all[0] = list[0].getJSONObject(0); //unwraps [] or for list
   main[0] = all[0].getJSONObject("main");
   
-  jsons(1,1,0);
-  jsons(2,2,1);
-  jsons(3,3,2);
-  jsons(4,4,3);
+  jsons(0,0,1);
+  jsons(1,1,2);
+  jsons(2,2,3);
+  jsons(3,3,4);
+  jsons(4,4,5);
+  jsons(5,5,6);
+  jsons(6,6,7);
+  jsons(7,7,8);
+  jsons(8,8,9);
+  jsons(9,9,10);
+  jsons(10,10,11);
+  jsons(11,11,12);
+  jsons(12,12,13);
+  jsons(13,13,14);
+  jsons(14,14,15);
   //For Alberta forecast
   JSONArray list2 = jsonForecastAlberta.getJSONArray ("list"); //unwraps [] or for list
   JSONObject all2 = list2.getJSONObject(0); //unwraps [] or for list
@@ -56,6 +67,16 @@ void call() {
   humidity3[index2] = main3.getFloat ("humidity");
   //saves the arraies to text file incase
   
+  saveStrings("edmonton/temprature.txt", str(temp));
+  saveStrings("edmonton/minimunTemprature.txt", str(minTemp));
+  saveStrings("edmonton/maximumTemprature.txt", str(maxTemp));
+  saveStrings("edmonton/humidity.txt", str(humidity));
+  
+  saveStrings("edmonton/futureTemp.txt", str(futureTemp));
+  saveStrings("edmonton/futureMinTemp.txt", str(futureMinTemp));
+  saveStrings("edmonton/futureMaxTemp.txt", str(futureMaxTemp));
+  saveStrings("edmonton/futureHumidity.txt", str(futureHumidity));
+  
   saveStrings("alberta/temprature.txt", str(temp2));
   saveStrings("alberta/minimunTemprature.txt", str(minTemp2));
   saveStrings("alberta/maximumTemprature.txt", str(maxTemp2));
@@ -89,31 +110,23 @@ void call() {
   int nPoints = 30;
   int aPoints = 30;
   String yes = "new";
+  String yes1 = "new1";
+  String yes2 = "new2";
+  String yes3 = "new3";
   GPointsArray points = new GPointsArray(nPoints);
   GPointsArray points1 = new GPointsArray(aPoints);
   //GLayer aa = new GLayer(aPoints);
   
   // Create a new plot and set its position on the screen
   GPlot plot = new GPlot(this);
-    plot.setPos(width*1/64, int(height*1/3.4));
+    plot.setPos(width*1/64, int(height*1/3.1));
     plot.setDim(width*1/5,height/4.7);
-    points.add(1,temp[1]);
-    points.add(2,temp[2]);
-    points.add(3,temp[3]);
-    points.add(4,temp[4]);
-    points.add(5,temp[5]);
-    points.add(6,temp[6]);
-    points.add(7,temp[7]);
-    points.add(8,temp[8]);
-    points.add(9,temp[9]);
-    points.add(10,temp[10]);
-    points.add(11,temp[11]);
-    points.add(12,temp[12]);
-    points.add(13,temp[13]);
-    points.add(14,temp[14]);
-    points1.add(1,futureTemp[0]);
-    points1.add(3,5);
-    
+    for(int i=1; i<=14; i++){
+      points.add(i,temp[i]);
+    }
+    for(int i=1; i<=14; i++){
+      points1.add(i,futureTemp[i]);
+    }
   // Set the plot title and the axis labels
   plot.setPointColor(aPoints);
   plot.setPoints(points);
@@ -125,35 +138,27 @@ void call() {
 
   // Draw it!
   plot.defaultDraw();
-  
   //end of graph
 
-/*
+
   GPointsArray points2 = new GPointsArray(nPoints);
-  
-  
+  GPointsArray newPoints = new GPointsArray(aPoints);
   // Create a new plot and set its position on the screen
   GPlot plot2 = new GPlot(this);
-    plot2.setPos(width*1/64, int(height*2/43*7 +10));
+    plot2.setPos(width*1/1.85, int(height*1/3.1));
     plot2.setDim(width*1/5,height/4.7);
-    points2.add(1,maxTemp[1]);
-    points2.add(2,maxTemp[2]);
-    points2.add(3,maxTemp[3]);
-    points2.add(4,maxTemp[4]);
-    points2.add(5,maxTemp[5]);
-    points2.add(6,maxTemp[6]);
-    points2.add(7,maxTemp[7]);
-    points2.add(8,maxTemp[8]);
-    points2.add(9,maxTemp[9]);
-    points2.add(10,maxTemp[10]);
-    points2.add(11,maxTemp[11]);
-    points2.add(12,maxTemp[12]);
-    points2.add(13,maxTemp[13]);
-    points2.add(14,maxTemp[14]);
+    for(int i=1; i<=14; i++){
+      points2.add(i,maxTemp[i]);
+    }
+    for(int i=1; i<=14; i++){
+      newPoints.add(i,futureMaxTemp[i]);
+    }
     
     
   // Set the plot title and the axis labels
+  plot2.setPointColor(aPoints);
   plot2.setPoints(points2);
+  plot2.addLayer(yes1, newPoints);
   plot2.getXAxis().setAxisLabelText("Time (14 days from the start of the program)");
   plot2.getYAxis().setAxisLabelText("Maximum Temprature (C)");
   plot2.setTitleText("Temprature difference for 14 days");
@@ -164,29 +169,23 @@ void call() {
   //end of graph
   
   GPointsArray points3 = new GPointsArray(nPoints);
-  
+  GPointsArray newPoints2 = new GPointsArray(aPoints);
   // Create a new plot and set its position on the screen
   GPlot plot3 = new GPlot(this);
-    plot3.setPos(width*1/64, int(height*2/43*13 +10*2));
+    plot3.setPos(width*1/3, int(height*1/1.5));
     plot3.setDim(width*1/5,height/4.7);
-    points3.add(1,minTemp[1]);
-    points3.add(2,minTemp[2]);
-    points3.add(3,minTemp[3]);
-    points2.add(4,minTemp[4]);
-    points3.add(5,minTemp[5]);
-    points3.add(6,minTemp[6]);
-    points3.add(7,minTemp[7]);
-    points3.add(8,minTemp[8]);
-    points3.add(9,minTemp[9]);
-    points3.add(10,minTemp[10]);
-    points3.add(11,minTemp[11]);
-    points3.add(12,minTemp[12]);
-    points3.add(13,minTemp[13]);
-    points3.add(14,minTemp[14]);
+    for(int i=1; i<=14; i++){
+      points3.add(i,minTemp[i]);
+    }
+    for(int i=1; i<=14; i++){
+      newPoints2.add(i,futureMinTemp[i]);
+    }
     
     
   // Set the plot title and the axis labels
+  plot3.setPointColor(aPoints);
   plot3.setPoints(points3);
+  plot3.addLayer(yes2, newPoints2);
   plot3.getXAxis().setAxisLabelText("Time (14 days from the start of the program)");
   plot3.getYAxis().setAxisLabelText("Minimum Temprature (C)");
   plot3.setTitleText("Temprature difference for 14 days");
@@ -196,40 +195,34 @@ void call() {
   //end of graph
   
   GPointsArray points4 = new GPointsArray(nPoints);
-  
+  GPointsArray newPoints3 = new GPointsArray(aPoints);
   
   // Create a new plot and set its position on the screen
   GPlot plot4 = new GPlot(this);
-    plot4.setPos(width*1/3.6, int(height*2/43));
+    plot4.setPos(width*1/3.6, int(height*1/3.1));
     plot4.setDim(width*1/5,height/4.7);
-    points4.add(1,humidity[1]);
-    points4.add(2,humidity[2]);
-    points4.add(3,humidity[3]);
-    points4.add(4,humidity[4]);
-    points4.add(5,humidity[5]);
-    points4.add(6,humidity[6]);
-    points4.add(7,humidity[7]);
-    points4.add(8,humidity[8]);
-    points4.add(9,humidity[9]);
-    points4.add(10,humidity[10]);
-    points4.add(11,humidity[11]);
-    points4.add(12,humidity[12]);
-    points4.add(13,humidity[13]);
-    points4.add(14,humidity[14]);
+    for(int i=1; i<=14; i++){
+      points4.add(i,humidity[i]);
+    }
+    for(int i=1; i<=14; i++){
+      newPoints3.add(i,futureHumidity[i]);
+    }
     
     
   // Set the plot title and the axis labels
+  plot4.setPointColor(aPoints);
   plot4.setPoints(points4);
+  plot4.addLayer(yes3, newPoints3);
   plot4.getXAxis().setAxisLabelText("Time (14 days from the start of the program)");
   plot4.getYAxis().setAxisLabelText("Humidity");
   plot4.setTitleText("Temprature difference for 14 days");
 
   // Draw it!
   plot4.defaultDraw();
-  /*
+
   GPointsArray points5 = new GPointsArray(nPoints);
   
-  
+  /*
   // Create a new plot and set its position on the screen
   GPlot plot5 = new GPlot(this);
     plot5.setPos(width*1/3.8, int(height*2/43*7 + 70));

@@ -5,14 +5,17 @@ int timer;
 int timer2;
 int timer3;
 int timer4;
-int index = 15;
+int index = 16;
 int index2 = 0;
 //for edmonton
 float[] temp= new float[index];
-float[] futureTemp= new float[index];
 float[] minTemp= new float[index];
 float[] maxTemp= new float[index];
 float[] humidity= new float[index];
+float[] futureTemp= new float[index];
+float[] futureMinTemp= new float[index];
+float[] futureMaxTemp= new float[index];
+float[] futureHumidity= new float[index];
 //for alberta
 float[] temp2= new float[index]; 
 float[] minTemp2= new float[index];
@@ -23,9 +26,9 @@ float[] temp3= new float[index];
 float[] minTemp3= new float[index];
 float[] maxTemp3= new float[index];
 float[] humidity3= new float[index];
-JSONArray[] list = new JSONArray[15];
-JSONObject[] all = new JSONObject[15];
-JSONObject[] main = new JSONObject[15];
+JSONArray[] list = new JSONArray[16];
+JSONObject[] all = new JSONObject[16];
+JSONObject[] main = new JSONObject[16];
 boolean check = false;
 boolean stop = false;
 
@@ -35,7 +38,6 @@ void setup(){
   frameRate(1);
   textSize(26);
   text("Edmonton", width*1/10, height*1/36);
-  
 
 }
 //86401000
@@ -58,9 +60,6 @@ void draw(){
   }
 }
 
-
-   
-   
 /* convert unix time concatonation
 http://www.convert-unix-time.com/api?timestamp=1513630800&timezone=Edmonton */
 
